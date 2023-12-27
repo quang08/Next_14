@@ -15,3 +15,13 @@ export async function deleteTodoAction(id: number) {
     await db.delete(todos).where(eq(todos.id, id));
     revalidatePath("/")
 }
+
+export async function toggleTodoAction(id: number) {
+    const todo = await db.query.todos.findFirst({
+        where: eq(todos.id, id),
+    })
+    await db.update(todos)
+        .set({completed: !todo?.completed})
+        .where(eq(todos.id, id));
+    revalidatePath("/")
+}
