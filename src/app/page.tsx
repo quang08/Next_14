@@ -1,6 +1,7 @@
 import { getAllTodos } from "@/data-access/todos";
 import { createTodoAction, deleteTodoAction } from "./actions";
 import { unstable_noStore } from "next/cache";
+import { SubmitButton } from "./submit-button";
 
 export default async function Home() {
   const todos = await getAllTodos();
@@ -11,7 +12,7 @@ export default async function Home() {
 
       <form action={createTodoAction}>
         <input name="text" className="text-black"/>
-        <button>Create Todo</button>
+        <SubmitButton/>
       </form>
 
       <ul className="list-disc">
