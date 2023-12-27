@@ -8,10 +8,10 @@ import { revalidatePath } from "next/cache";
 export async function createTodoAction(formData: FormData) {
     const text = formData.get("text") as string;
     await db.insert(todos).values({text})
+    revalidatePath("/")
 }
 
-export async function deleteTodoAction(formData: FormData) {
-    const id = parseInt(formData.get("todoId") as string);
+export async function deleteTodoAction(id: number) {
     await db.delete(todos).where(eq(todos.id, id));
     revalidatePath("/")
 }

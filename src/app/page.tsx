@@ -18,8 +18,7 @@ export default async function Home() {
         {todos.map(todo => (
           <li key={todo.id} className="flex gap-2 items-center">
             {todo.text}
-            <form action={deleteTodoAction}>
-              <input name='todoId' type='hidden' value={todo.id}/>
+            <form action={deleteTodoAction.bind(null, todo.id)}>
               <button className="text-red-400">Delete</button>
             </form>
           </li>
